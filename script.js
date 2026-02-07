@@ -9,6 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Simulate real-time updates
     startRealTimeUpdates();
+    
+    // Add interactivity to activity items
+    document.querySelectorAll('.activity-item').forEach(item => {
+        item.addEventListener('click', function() {
+            this.style.backgroundColor = '#e7e7ff';
+            setTimeout(() => {
+                this.style.backgroundColor = 'white';
+            }, 300);
+        });
+    });
 });
 
 // Animate cards on load
@@ -35,6 +45,7 @@ function startRealTimeUpdates() {
         const projectCount = document.querySelector('.card:nth-child(1) .stat-value');
         if (projectCount) {
             const currentValue = parseInt(projectCount.textContent);
+            // 50% chance to increment or decrement the project count
             const change = Math.random() > 0.5 ? 1 : -1;
             const newValue = Math.max(0, currentValue + change);
             projectCount.textContent = newValue;
@@ -51,13 +62,3 @@ function startRealTimeUpdates() {
         }
     }, 5000);
 }
-
-// Add interactivity to activity items
-document.querySelectorAll('.activity-item').forEach(item => {
-    item.addEventListener('click', function() {
-        this.style.backgroundColor = '#e7e7ff';
-        setTimeout(() => {
-            this.style.backgroundColor = 'white';
-        }, 300);
-    });
-});
